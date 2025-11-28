@@ -1,0 +1,7 @@
+{
+  "name": "AI Interviewer Pro",
+  "description": "Nền tảng phỏng vấn tự động sử dụng AI Voice-to-Voice để phân tích JD, CV và thực hiện phỏng vấn tương tác thời gian thực.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
