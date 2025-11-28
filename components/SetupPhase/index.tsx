@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { InterviewData } from '../types';
+import { InterviewData } from '../../types';
+import { Button } from '../common/Button';
+import { SAMPLE_JOB_DESCRIPTION, SAMPLE_CANDIDATE_CV, DEFAULT_COMPANY_CULTURE } from '../../constants/sampleData';
 
 interface SetupPhaseProps {
   onStart: (data: InterviewData) => void;
@@ -9,7 +11,7 @@ interface SetupPhaseProps {
 export const SetupPhase: React.FC<SetupPhaseProps> = ({ onStart, isLoading }) => {
   const [jd, setJd] = useState('');
   const [cv, setCv] = useState('');
-  const [culture, setCulture] = useState('Chuyên nghiệp, sáng tạo, cởi mở.');
+  const [culture, setCulture] = useState(DEFAULT_COMPANY_CULTURE);
 
   const handleStart = () => {
     if (!jd.trim() || !cv.trim()) {
@@ -20,20 +22,8 @@ export const SetupPhase: React.FC<SetupPhaseProps> = ({ onStart, isLoading }) =>
   };
 
   const fillSample = () => {
-    setJd(`Vị trí: Senior React Engineer
-Yêu cầu:
-- 5+ năm kinh nghiệm với React, TypeScript.
-- Hiểu sâu về Lifecycle, Hooks, Performance Optimization.
-- Có kinh nghiệm với Tailwind CSS, State Management (Redux/Zustand).
-- Khả năng làm việc độc lập, tiếng Anh tốt.
-- Tư duy sản phẩm tốt.`);
-    setCv(`Nguyễn Văn A
-Kinh nghiệm:
-- 6 năm làm Frontend Developer.
-- Chuyên gia ReactJS, NextJS.
-- Đã từng lead team 5 người.
-- Tiếng Anh giao tiếp trôi chảy (IELTS 7.0).
-Kỹ năng: React, Node.js, AWS.`);
+    setJd(SAMPLE_JOB_DESCRIPTION);
+    setCv(SAMPLE_CANDIDATE_CV);
   };
 
   return (
@@ -79,25 +69,14 @@ Kỹ năng: React, Node.js, AWS.`);
       </div>
 
       <div className="flex justify-center">
-        <button
+        <Button
+          variant="primary"
+          size="lg"
+          isLoading={isLoading}
           onClick={handleStart}
-          disabled={isLoading}
-          className={`px-8 py-4 rounded-full font-bold text-white text-lg shadow-lg transition-all transform hover:scale-105 ${
-            isLoading ? 'bg-slate-400 cursor-not-allowed' : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:shadow-blue-500/30'
-          }`}
         >
-          {isLoading ? (
-            <span className="flex items-center">
-              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              Đang phân tích dữ liệu...
-            </span>
-          ) : (
-            'Bắt đầu Phỏng vấn'
-          )}
-        </button>
+          Bắt đầu Phỏng vấn
+        </Button>
       </div>
     </div>
   );

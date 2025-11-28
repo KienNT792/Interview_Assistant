@@ -1,7 +1,7 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { AnalysisResult, InterviewData, ReportData, TranscriptItem } from "../types";
 
-const API_KEY = process.env.API_KEY || '';
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
 const ai = new GoogleGenAI({ apiKey: API_KEY });
 
 // Analyze JD and CV to prepare the Interviewer System Instruction
